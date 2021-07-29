@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.grey[300],
           appBarTheme: AppBarTheme(
             elevation: 0,
-            color: Colors.indigo,
+            color: Colors.greenAccent,
+            titleTextStyle: TextStyle(color: Colors.blue),
           ),
           floatingActionButtonTheme: FloatingActionButtonThemeData(
             backgroundColor: Colors.indigo,

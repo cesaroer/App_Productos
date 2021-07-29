@@ -9,7 +9,7 @@ class ProductCard extends StatelessWidget {
         margin: EdgeInsets.only(top: 30, bottom: 50),
         width: double.infinity,
         height: 400,
-        color: Colors.red,
+        color: Colors.blueAccent,
       ),
     );
   }
