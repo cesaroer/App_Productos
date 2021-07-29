@@ -15,11 +15,12 @@ class MyApp extends StatelessWidget {
         "home": (_) => HomeScreen(),
       },
       theme: ThemeData.light().copyWith(
+          primaryTextTheme:
+              TextTheme(headline6: TextStyle(color: Colors.black)),
           scaffoldBackgroundColor: Colors.grey[300],
           appBarTheme: AppBarTheme(
             elevation: 0,
             color: Colors.greenAccent,
-            titleTextStyle: TextStyle(color: Colors.blue),
           ),
           floatingActionButtonTheme: FloatingActionButtonThemeData(
             backgroundColor: Colors.indigo,
