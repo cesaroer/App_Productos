@@ -15,6 +15,8 @@ class ProductCard extends StatelessWidget {
           children: [
             _BackgroundImage(),
             _productDetails(),
+            Positioned(top: 0, right: 0, child: PriceTag()),
+            Positioned(top: 0, left: 0, child: _NotAvailable()),
           ],
         ),
       ),
@@ -34,15 +36,94 @@ class ProductCard extends StatelessWidget {
       );
 }
 
-class _productDetails extends StatelessWidget {
+class _NotAvailable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      child: FittedBox(
+        fit: BoxFit.contain,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25),
+          child: Text(
+            "No disponible",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        ),
+      ),
+      width: 140,
       height: 70,
-      color: Colors.indigo,
+      decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(35), bottomRight: Radius.circular(35))),
     );
   }
+}
+
+class PriceTag extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      // Con FittedBox el texto se adapta al espacio que tiene
+      child: FittedBox(
+        fit: BoxFit.contain,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Text(
+            "\$100.99",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        ),
+      ),
+      width: 100,
+      height: 70,
+      decoration: BoxDecoration(
+          color: Colors.indigo,
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(35), bottomLeft: Radius.circular(35))),
+    );
+  }
+}
+
+class _productDetails extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(right: 50),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        width: double.infinity,
+        height: 70,
+        decoration: _buildBoxDecoration(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Disco duro G",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              "ID del Disco duro",
+              style: TextStyle(color: Colors.white, fontSize: 15),
+              overflow: TextOverflow.ellipsis,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  BoxDecoration _buildBoxDecoration() => BoxDecoration(
+        color: Colors.indigo,
+        borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(35), topRight: Radius.circular(35)),
+      );
 }
 
 class _BackgroundImage extends StatelessWidget {
