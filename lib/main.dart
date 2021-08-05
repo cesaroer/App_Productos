@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "login": (_) => LoginScreen(),
         "home": (_) => HomeScreen(),
+        "product": (_) => productScreen(),
       },
       theme: ThemeData.light().copyWith(
           primaryTextTheme:
