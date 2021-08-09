@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productos_app/Animation/FadeAnimation.dart';
 import 'package:productos_app/services/product_service.dart';
 import 'package:productos_app/ui/input_decorations.dart';
 import 'package:productos_app/widgets/widgets.dart';
@@ -10,37 +11,40 @@ class ProductScreen extends StatelessWidget {
     final productService = Provider.of<ProductsService>(context);
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                ProductImage(
-                  url: productService.selectedProduct.picture,
-                ),
-                Positioned(
-                  top: 50,
-                  left: 20,
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_back_ios,
-                        size: 40, color: Colors.white),
-                    onPressed: () => Navigator.pop(context),
+      body: FadeAnimation(
+        0.1,
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  ProductImage(
+                    url: productService.selectedProduct.picture,
                   ),
-                ),
-                Positioned(
-                  top: 50,
-                  right: 30,
-                  child: IconButton(
-                    icon: Icon(Icons.camera_alt_outlined,
-                        size: 40, color: Colors.white),
-                    onPressed: () {},
+                  Positioned(
+                    top: 50,
+                    left: 20,
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back_ios,
+                          size: 40, color: Colors.white),
+                      onPressed: () => Navigator.pop(context),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            _ProductForm(),
-            SizedBox(height: 100)
-          ],
+                  Positioned(
+                    top: 50,
+                    right: 30,
+                    child: IconButton(
+                      icon: Icon(Icons.camera_alt_outlined,
+                          size: 40, color: Colors.white),
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
+              ),
+              _ProductForm(),
+              SizedBox(height: 100)
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
