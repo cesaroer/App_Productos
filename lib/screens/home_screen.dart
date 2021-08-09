@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:productos_app/Animation/FadeAnimation.dart';
 import 'package:productos_app/screens/screens.dart';
 import 'package:productos_app/services/product_service.dart';
 import 'package:productos_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
+  bool _firtsLoad = true;
+
   @override
   Widget build(BuildContext context) {
     final productsService = Provider.of<ProductsService>(context);
@@ -18,7 +21,7 @@ class HomeScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: productsService.products.length,
         itemBuilder: (BuildContext context, int index) => GestureDetector(
-          child: ProductCard(product: productsService.products[index]),
+          child: _animateProductItem(_firtsLoad, productsService, index),
           onTap: () {
             productsService.selectedProduct =
                 productsService.products[index].copy();
@@ -30,6 +33,20 @@ class HomeScreen extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: () {},
       ),
+    );
+  }
+
+  FadeAnimation _animateProductItem(
+    bool _firtsLoad,
+    ProductsService productsService,
+    int index,
+  ) {
+    final animate = _firtsLoad;
+    this._firtsLoad = false;
+
+    return FadeAnimation(
+      animate ? 0.8 : 0.1,
+      ProductCard(product: productsService.products[index]),
     );
   }
 }
