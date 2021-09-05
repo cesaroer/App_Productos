@@ -29,6 +29,7 @@ class _ProductScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productForm = Provider.of<ProductFormProvider>(context);
     return Scaffold(
       body: FadeAnimation(
         0.7,
@@ -70,7 +71,11 @@ class _ProductScreenBody extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.save_alt_outlined),
-        onPressed: () {},
+        onPressed: () async {
+          if (!productForm.isValidForm()) return;
+
+          await productService.saveOrCreateProduct(productForm.product);
+        },
       ),
     );
   }
@@ -89,6 +94,8 @@ class _ProductForm extends StatelessWidget {
         width: double.infinity,
         decoration: _buildBoxDecoration(),
         child: Form(
+          key: productForm.formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             children: [
               SizedBox(height: 10),
