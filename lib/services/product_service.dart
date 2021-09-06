@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ProductsService extends ChangeNotifier {
+// https://api.cloudinary.com/v1_1/dlol5si3g/image/upload?upload_preset=gnqwkuvk
+
   final String _baseUrl = "flutter-varios-8ff33-default-rtdb.firebaseio.com";
   final List<Product> products = [];
   late Product selectedProduct;
