@@ -63,7 +63,10 @@ class _ProductScreenBody extends StatelessWidget {
                         //final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery, imageQuality: 100);
 
                         final PickedFile? pickedFile = await picker.getImage(
-                            source: ImageSource.gallery, imageQuality: 100);
+                          source: ImageSource.camera,
+                          //source: ImageSource.gallery,
+                          imageQuality: 100,
+                        );
 
                         if (pickedFile == null) {
                           print("No selecciono nada");
@@ -71,6 +74,8 @@ class _ProductScreenBody extends StatelessWidget {
                         }
 
                         print("Tenemos imagen ${pickedFile.path}");
+                        productService
+                            .updateSelectedProductImage(pickedFile.path);
                       },
                     ),
                   ),
